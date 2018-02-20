@@ -56,6 +56,8 @@ def _egcd(x,n):
     t_2 = -1 * q
     #print('{} =  {} * {} + {}'.format(r0,q,r1,r2))
     #print('{} = {} * r0 + {} * r1 '.format(r2,s_2,t_2))
+    if (r2 == 1):
+        return t_2 % n
     r0 = r1
     r1 = r2
     q = r0 // r1
@@ -64,7 +66,9 @@ def _egcd(x,n):
     t_1 = 1 - (q * t_2)
     #print('{} =  {} * {} + {}'.format(r0,q,r1,r2))
     #print('{} = {} * r0 + {} * r1 '.format(r2,s_1,t_1))
-    while(r2 != 1):
+    if (r2 == 1):
+        return t_1 % n
+    while(r2 > 1):
         r0 = r1
         r1 = r2
         q = r0 // r1
@@ -78,7 +82,7 @@ def _egcd(x,n):
         t_1 = t
         s_1 = s
     if (r2 != 1):
-        print('gcd(x,n) != 1')
+        sys.exit('gcd(x,n) != 1')
     else:
         return t % n
 
@@ -88,3 +92,4 @@ print decrypt(444)
 print differenceOfSquares(989)
 print differenceOfSquares(9382619383)
 print differenceOfSquares(4386607)
+print _egcd(2,41989)
